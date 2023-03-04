@@ -13,16 +13,16 @@ import {
   HttpStatus,
   HttpCode,
   SerializeOptions,
-} from '@nestjs/common';
-import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { Roles } from 'src/roles/roles.decorator';
-import { RoleEnum } from 'src/roles/roles.enum';
-import { AuthGuard } from '@nestjs/passport';
-import { RolesGuard } from 'src/roles/roles.guard';
-import { infinityPagination } from 'src/utils/infinity-pagination';
+} from '@nestjs/common'
+import { UsersService } from './users.service'
+import { CreateUserDto } from './dto/create-user.dto'
+import { UpdateUserDto } from './dto/update-user.dto'
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger'
+import { Roles } from 'src/roles/roles.decorator'
+import { RoleEnum } from 'src/roles/roles.enum'
+import { AuthGuard } from '@nestjs/passport'
+import { RolesGuard } from 'src/roles/roles.guard'
+import { infinityPagination } from 'src/utils/infinity-pagination'
 
 @ApiBearerAuth()
 @Roles(RoleEnum.admin)
@@ -41,7 +41,7 @@ export class UsersController {
   @Post()
   @HttpCode(HttpStatus.CREATED)
   create(@Body() createProfileDto: CreateUserDto) {
-    return this.usersService.create(createProfileDto);
+    return this.usersService.create(createProfileDto)
   }
 
   @SerializeOptions({
@@ -54,7 +54,7 @@ export class UsersController {
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
   ) {
     if (limit > 50) {
-      limit = 50;
+      limit = 50
     }
 
     return infinityPagination(
@@ -63,7 +63,7 @@ export class UsersController {
         limit,
       }),
       { page, limit },
-    );
+    )
   }
 
   @SerializeOptions({
@@ -72,7 +72,7 @@ export class UsersController {
   @Get(':id')
   @HttpCode(HttpStatus.OK)
   findOne(@Param('id') id: string) {
-    return this.usersService.findOne({ id: +id });
+    return this.usersService.findOne({ id: +id })
   }
 
   @SerializeOptions({
@@ -81,11 +81,11 @@ export class UsersController {
   @Patch(':id')
   @HttpCode(HttpStatus.OK)
   update(@Param('id') id: number, @Body() updateProfileDto: UpdateUserDto) {
-    return this.usersService.update(id, updateProfileDto);
+    return this.usersService.update(id, updateProfileDto)
   }
 
   @Delete(':id')
   remove(@Param('id') id: number) {
-    return this.usersService.softDelete(id);
+    return this.usersService.softDelete(id)
   }
 }

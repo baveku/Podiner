@@ -1,4 +1,4 @@
-import { registerAs } from '@nestjs/config';
+import { registerAs } from '@nestjs/config'
 
 export default registerAs('app', () => ({
   nodeEnv: process.env.NODE_ENV,
@@ -10,4 +10,4 @@ export default registerAs('app', () => ({
   apiPrefix: process.env.API_PREFIX || 'api',
   fallbackLanguage: process.env.APP_FALLBACK_LANGUAGE || 'en',
   headerLanguage: process.env.APP_HEADER_LANGUAGE || 'x-custom-lang',
-}));
+}))

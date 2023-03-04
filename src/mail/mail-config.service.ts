@@ -1,8 +1,8 @@
-import * as path from 'path';
-import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { MailerOptions, MailerOptionsFactory } from '@nestjs-modules/mailer';
-import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
+import * as path from 'path'
+import { Injectable } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
+import { MailerOptions, MailerOptionsFactory } from '@nestjs-modules/mailer'
+import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter'
 
 @Injectable()
 export class MailConfigService implements MailerOptionsFactory {
@@ -38,6 +38,6 @@ export class MailConfigService implements MailerOptionsFactory {
           strict: true,
         },
       },
-    } as MailerOptions;
+    } as MailerOptions
   }
 }

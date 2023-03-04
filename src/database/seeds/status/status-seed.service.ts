@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Status } from 'src/statuses/entities/status.entity';
-import { StatusEnum } from 'src/statuses/statuses.enum';
-import { Repository } from 'typeorm';
+import { Injectable } from '@nestjs/common'
+import { InjectRepository } from '@nestjs/typeorm'
+import { Status } from 'src/statuses/entities/status.entity'
+import { StatusEnum } from 'src/statuses/statuses.enum'
+import { Repository } from 'typeorm'
 
 @Injectable()
 export class StatusSeedService {
@@ -12,7 +12,7 @@ export class StatusSeedService {
   ) {}
 
   async run() {
-    const count = await this.repository.count();
+    const count = await this.repository.count()
 
     if (count === 0) {
       await this.repository.save([
@@ -24,7 +24,7 @@ export class StatusSeedService {
           id: StatusEnum.inactive,
           name: 'Inactive',
         }),
-      ]);
+      ])
     }
   }
 }

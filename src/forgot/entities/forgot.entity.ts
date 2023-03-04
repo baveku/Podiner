@@ -6,30 +6,30 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
   DeleteDateColumn,
-} from 'typeorm';
-import { User } from '../../users/entities/user.entity';
-import { Allow } from 'class-validator';
-import { EntityHelper } from 'src/utils/entity-helper';
+} from 'typeorm'
+import { User } from '../../users/entities/user.entity'
+import { Allow } from 'class-validator'
+import { EntityHelper } from 'src/utils/entity-helper'
 
 @Entity()
 export class Forgot extends EntityHelper {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: number
 
   @Allow()
   @Column()
   @Index()
-  hash: string;
+  hash: string
 
   @Allow()
   @ManyToOne(() => User, {
     eager: true,
   })
-  user: User;
+  user: User
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt: Date
 
   @DeleteDateColumn()
-  deletedAt: Date;
+  deletedAt: Date
 }

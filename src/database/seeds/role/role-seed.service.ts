@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Role } from 'src/roles/entities/role.entity';
-import { RoleEnum } from 'src/roles/roles.enum';
-import { Repository } from 'typeorm';
+import { Injectable } from '@nestjs/common'
+import { InjectRepository } from '@nestjs/typeorm'
+import { Role } from 'src/roles/entities/role.entity'
+import { RoleEnum } from 'src/roles/roles.enum'
+import { Repository } from 'typeorm'
 
 @Injectable()
 export class RoleSeedService {
@@ -16,7 +16,7 @@ export class RoleSeedService {
       where: {
         id: RoleEnum.user,
       },
-    });
+    })
 
     if (countUser === 0) {
       await this.repository.save(
@@ -24,14 +24,14 @@ export class RoleSeedService {
           id: RoleEnum.user,
           name: 'User',
         }),
-      );
+      )
     }
 
     const countAdmin = await this.repository.count({
       where: {
         id: RoleEnum.admin,
       },
-    });
+    })
 
     if (countAdmin === 0) {
       await this.repository.save(
@@ -39,7 +39,7 @@ export class RoleSeedService {
           id: RoleEnum.admin,
           name: 'Admin',
         }),
-      );
+      )
     }
   }
 }

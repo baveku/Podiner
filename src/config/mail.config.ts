@@ -1,4 +1,4 @@
-import { registerAs } from '@nestjs/config';
+import { registerAs } from '@nestjs/config'
 
 export default registerAs('mail', () => ({
   port: parseInt(process.env.MAIL_PORT, 10),
@@ -10,4 +10,4 @@ export default registerAs('mail', () => ({
   ignoreTLS: process.env.MAIL_IGNORE_TLS === 'true',
   secure: process.env.MAIL_SECURE === 'true',
   requireTLS: process.env.MAIL_REQUIRE_TLS === 'true',
-}));
+}))

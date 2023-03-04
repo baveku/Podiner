@@ -1,15 +1,15 @@
-import 'reflect-metadata';
-import { DataSource, DataSourceOptions } from 'typeorm';
+import 'reflect-metadata'
+import { DataSource, DataSourceOptions } from 'typeorm'
 
 export const AppDataSource = new DataSource({
-  type: process.env.DATABASE_TYPE,
-  url: process.env.DATABASE_URL,
-  host: process.env.DATABASE_HOST,
-  port: parseInt(process.env.DATABASE_PORT, 10) || 5432,
-  username: process.env.DATABASE_USERNAME,
-  password: process.env.DATABASE_PASSWORD,
-  database: process.env.DATABASE_NAME,
-  synchronize: process.env.DATABASE_SYNCHRONIZE === 'true',
+  type: process.env.DB_TYPE,
+  url: process.env.DB_URL,
+  host: process.env.DB_HOST,
+  port: parseInt(process.env.DB_PORT, 10) || 3306,
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+  synchronize: process.env.DB_SYNCHRONIZE === 'true',
   dropSchema: false,
   keepConnectionAlive: true,
   logging: process.env.NODE_ENV !== 'production',
@@ -23,16 +23,15 @@ export const AppDataSource = new DataSource({
   extra: {
     // based on https://node-postgres.com/api/pool
     // max connection pool size
-    max: parseInt(process.env.DATABASE_MAX_CONNECTIONS, 10) || 100,
+    max: parseInt(process.env.DB_MAX_CONNECTIONS, 10) || 100,
     ssl:
-      process.env.DATABASE_SSL_ENABLED === 'true'
+      process.env.DB_SSL_ENABLED === 'true'
         ? {
-            rejectUnauthorized:
-              process.env.DATABASE_REJECT_UNAUTHORIZED === 'true',
-            ca: process.env.DATABASE_CA ?? undefined,
-            key: process.env.DATABASE_KEY ?? undefined,
-            cert: process.env.DATABASE_CERT ?? undefined,
+            rejectUnauthorized: process.env.DB_REJECT_UNAUTHORIZED === 'true',
+            ca: process.env.DB_CA ?? undefined,
+            key: process.env.DB_KEY ?? undefined,
+            cert: process.env.DB_CERT ?? undefined,
           }
         : undefined,
   },
-} as DataSourceOptions);
+} as DataSourceOptions)

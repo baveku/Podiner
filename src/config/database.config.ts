@@ -1,4 +1,4 @@
-import { registerAs } from '@nestjs/config';
+import { registerAs } from '@nestjs/config'
 
 export default registerAs('database', () => ({
   url: process.env.DATABASE_URL,
@@ -15,4 +15,4 @@ export default registerAs('database', () => ({
   ca: process.env.DATABASE_CA,
   key: process.env.DATABASE_KEY,
   cert: process.env.DATABASE_CERT,
-}));
+}))

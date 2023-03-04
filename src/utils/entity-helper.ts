@@ -1,15 +1,15 @@
-import { instanceToPlain } from 'class-transformer';
-import { AfterLoad, BaseEntity } from 'typeorm';
+import { instanceToPlain } from 'class-transformer'
+import { AfterLoad, BaseEntity } from 'typeorm'
 
 export class EntityHelper extends BaseEntity {
-  __entity?: string;
+  __entity?: string
 
   @AfterLoad()
   setEntityName() {
-    this.__entity = this.constructor.name;
+    this.__entity = this.constructor.name
   }
 
   toJSON() {
-    return instanceToPlain(this);
+    return instanceToPlain(this)
   }
 }

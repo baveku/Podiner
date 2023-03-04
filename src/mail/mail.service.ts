@@ -1,8 +1,8 @@
-import { MailerService } from '@nestjs-modules/mailer';
-import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { I18nContext } from 'nestjs-i18n';
-import { MailData } from './interfaces/mail-data.interface';
+import { MailerService } from '@nestjs-modules/mailer'
+import { Injectable } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
+import { I18nContext } from 'nestjs-i18n'
+import { MailData } from './interfaces/mail-data.interface'
 
 @Injectable()
 export class MailService {
@@ -12,7 +12,7 @@ export class MailService {
   ) {}
 
   async userSignUp(mailData: MailData<{ hash: string }>) {
-    const i18n = I18nContext.current();
+    const i18n = I18nContext.current()
 
     await this.mailerService.sendMail({
       to: mailData.to,
@@ -32,11 +32,11 @@ export class MailService {
         text2: await i18n.t('confirm-email.text2'),
         text3: await i18n.t('confirm-email.text3'),
       },
-    });
+    })
   }
 
   async forgotPassword(mailData: MailData<{ hash: string }>) {
-    const i18n = I18nContext.current();
+    const i18n = I18nContext.current()
 
     await this.mailerService.sendMail({
       to: mailData.to,
@@ -57,6 +57,6 @@ export class MailService {
         text3: await i18n.t('reset-password.text3'),
         text4: await i18n.t('reset-password.text4'),
       },
-    });
+    })
   }
 }
