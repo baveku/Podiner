@@ -16,7 +16,7 @@ export class MailService {
 
     await this.mailerService.sendMail({
       to: mailData.to,
-      subject: await i18n.t('common.confirmEmail'),
+      subject: await i18n.t('common:confirmEmail'),
       text: `${this.configService.get('app.frontendDomain')}/confirm-email/${
         mailData.data.hash
       } ${await i18n.t('common.confirmEmail')}`,
