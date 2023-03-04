@@ -13,51 +13,24 @@ export class UserSeedService {
   ) {}
 
   async run() {
-    const countAdmin = await this.repository.count({
+    const countSuperAdmin = await this.repository.count({
       where: {
         role: {
-          id: RoleEnum.admin,
+          id: RoleEnum.super_admin,
         },
       },
     })
 
-    if (countAdmin === 0) {
+    if (countSuperAdmin === 0) {
       await this.repository.save(
         this.repository.create({
-          firstName: 'Super',
-          lastName: 'Admin',
-          email: 'admin@example.com',
-          password: 'secret',
+          firstName: 'Bach',
+          lastName: 'God',
+          email: 'baveku@gmail.com',
+          password: 'admin123#',
           role: {
-            id: RoleEnum.admin,
-            name: 'Admin',
-          },
-          status: {
-            id: StatusEnum.active,
-            name: 'Active',
-          },
-        }),
-      )
-    }
-
-    const countUser = await this.repository.count({
-      where: {
-        role: {
-          id: RoleEnum.user,
-        },
-      },
-    })
-
-    if (countUser === 0) {
-      await this.repository.save(
-        this.repository.create({
-          firstName: 'John',
-          lastName: 'Doe',
-          email: 'john.doe@example.com',
-          password: 'secret',
-          role: {
-            id: RoleEnum.user,
-            name: 'Admin',
+            id: RoleEnum.super_admin,
+            name: 'Super Admin',
           },
           status: {
             id: StatusEnum.active,

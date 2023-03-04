@@ -31,6 +31,9 @@ import { UsersModule } from './users/users.module'
 
 @Module({
   imports: [
+    DevtoolsModule.register({
+      http: process.env.NODE_ENV !== 'production',
+    }),
     ConfigModule.forRoot({
       isGlobal: true,
       load: [
@@ -83,9 +86,6 @@ import { UsersModule } from './users/users.module'
     ForgotModule,
     MailModule,
     HomeModule,
-    DevtoolsModule.register({
-      http: process.env.NODE_ENV !== 'production',
-    }),
   ],
 })
 export class AppModule {}
