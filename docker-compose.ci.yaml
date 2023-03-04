@@ -3,7 +3,6 @@ services:
     image: docker.io/bitnami/mariadb:10.6
     container_name: db
     environment:
-      ALLOW_EMPTY_PASSWORD: yes
       MARIADB_ROOT_HOST: ${DB_HOST}
       MARIADB_DATABASE: ${DB_DATABASE}
       MARIADB_ROOT_PASSWORD: ${DB_PASSWORD}
