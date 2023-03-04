@@ -1,7 +1,6 @@
 services:
   db:
     image: docker.io/bitnami/mariadb:10.6
-    container_name: db
     environment:
       MARIADB_ROOT_HOST: ${DB_HOST}
       MARIADB_DATABASE: ${DB_DATABASE}
