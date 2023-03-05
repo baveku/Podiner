@@ -1,3 +1,4 @@
+import { RedisModule } from '@liaoliaots/nestjs-redis'
 import { MailerModule } from '@nestjs-modules/mailer'
 import { Module } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
@@ -31,9 +32,6 @@ import { UsersModule } from './users/users.module'
 
 @Module({
   imports: [
-    DevtoolsModule.register({
-      http: process.env.NODE_ENV !== 'production',
-    }),
     ConfigModule.forRoot({
       isGlobal: true,
       load: [
@@ -48,6 +46,16 @@ import { UsersModule } from './users/users.module'
         appleConfig,
       ],
       envFilePath: ['.env'],
+    }),
+    DevtoolsModule.register({
+      http: process.env.NODE_ENV !== 'production',
+    }),
+    RedisModule.forRoot({
+      config: {
+        host: process.env.REDIS_HOST,
+        port: parseInt(process.env.REDIS_PORT),
+        password: process.env.REDIS_PASSWORD,
+      },
     }),
     TypeOrmModule.forRootAsync({
       useClass: TypeOrmConfigService,

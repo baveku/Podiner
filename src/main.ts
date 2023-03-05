@@ -21,8 +21,12 @@ async function bootstrap() {
     { snapshot: true },
   )
   useContainer(app.select(AppModule), { fallbackOnErrors: true })
-  const configService = app.get(ConfigService)
 
+  const configService = app.get(ConfigService)
+  const isProduction = configService.get('app.nodeEnv') === 'production'
+  if (!isProduction) {
+    app.useLogger(['log', 'debug'])
+  }
   app.enableShutdownHooks()
   app.setGlobalPrefix(configService.get('app.apiPrefix'), {
     exclude: ['/'],
