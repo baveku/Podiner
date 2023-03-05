@@ -20,6 +20,23 @@ services:
     expose:
       - 1080
       - 1025
+  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - '8091:80'
+    environment:
+      - PMA_ARBITRARY=1
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - PMA_USER=${DB_USERNAME}
+    depends_on:
+      - db
+    links:
+      - db:db
+    networks:
+      - podback
 
   # Uncomment to use redis
   redis:
